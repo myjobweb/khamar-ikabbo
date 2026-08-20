@@ -1,10 +1,10 @@
 import React from 'react';
 import { useApp } from '../context/AppContext';
 import { formatTaka, toBengaliNumber } from '../utils/bengali';
-import { Gift, ShoppingBag, Eye, CheckCircle2, ArrowRight } from 'lucide-react';
+import { Gift, ShoppingBag, Eye, CheckCircle2, ArrowRight, Zap } from 'lucide-react';
 
 export const CombinationSection: React.FC = () => {
-  const { products, siteSettings, setSelectedProduct, addToCart, setCurrentRoute } = useApp();
+  const { products, siteSettings, setSelectedProduct, buyNow, setCurrentRoute } = useApp();
 
   if (siteSettings.sectionVisibility?.combination === false) {
     return null;
@@ -144,11 +144,11 @@ export const CombinationSection: React.FC = () => {
                   </button>
 
                   <button
-                    onClick={() => addToCart(combo, 1, true)}
-                    className="flex items-center justify-center gap-1.5 py-2.5 px-3 bg-[#1B5E20] hover:bg-[#124116] text-white font-bold text-xs rounded-xl transition-colors cursor-pointer shadow-2xs"
+                    onClick={() => buyNow(combo, 1)}
+                    className="flex items-center justify-center gap-1.5 py-2.5 px-3 bg-[#F57C00] hover:bg-[#E65100] text-white font-bold text-xs rounded-xl transition-colors cursor-pointer shadow-xs"
                   >
-                    <ShoppingBag className="w-4 h-4" />
-                    <span>কার্টে যোগ করুন</span>
+                    <Zap className="w-4 h-4 text-white fill-white" />
+                    <span>অর্ডার করুন</span>
                   </button>
                 </div>
               </div>

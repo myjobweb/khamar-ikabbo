@@ -152,7 +152,7 @@ export function App() {
         return <ContactView />;
 
       case 'cart':
-        return <CartView />;
+        return <CheckoutView />;
 
       case 'checkout':
         return <CheckoutView />;
@@ -189,7 +189,6 @@ export function App() {
 
       {/* Global Overlays & Modals */}
       <ProductDetailsModal />
-      <CartDrawer />
       <CheckoutModal />
       <OrderSuccessModal />
       <FeedCalculatorModal />

@@ -20,7 +20,6 @@ export const ProductDetailsModal: React.FC = () => {
   const {
     selectedProduct,
     setSelectedProduct,
-    addToCart,
     buyNow,
     products
   } = useApp();
@@ -252,28 +251,15 @@ export const ProductDetailsModal: React.FC = () => {
                 </span>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
-                <button
-                  onClick={() => {
-                    addToCart(selectedProduct, quantity, true);
-                    setSelectedProduct(null);
-                  }}
-                  disabled={!selectedProduct.inStock}
-                  className="flex items-center justify-center gap-2 bg-[#FDFCF9] hover:bg-[#F1F8E9] text-[#1B5E20] border border-[#E8E5DF] font-bold py-3.5 px-4 rounded-2xl transition-all active:scale-98 cursor-pointer"
-                  id="btn-modal-add-cart"
-                >
-                  <ShoppingBag className="w-4 h-4" />
-                  <span>কার্টে যোগ করুন</span>
-                </button>
-
+              <div className="pt-2">
                 <button
                   onClick={() => buyNow(selectedProduct, quantity)}
                   disabled={!selectedProduct.inStock}
-                  className="flex items-center justify-center gap-2 bg-[#F57C00] hover:bg-[#E65100] text-white font-bold py-3.5 px-4 rounded-2xl shadow-lg transition-all active:scale-98 cursor-pointer"
+                  className="w-full flex items-center justify-center gap-2 bg-[#F57C00] hover:bg-[#E65100] text-white font-bold py-3.5 px-6 rounded-2xl shadow-lg transition-all active:scale-98 cursor-pointer disabled:opacity-50 text-base"
                   id="btn-modal-buy-now"
                 >
-                  <Zap className="w-4 h-4 text-white" />
-                  <span>এখনই অর্ডার করুন</span>
+                  <Zap className="w-5 h-5 text-white fill-white" />
+                  <span>{selectedProduct.inStock ? 'এখনই অর্ডার করুন' : 'স্টক শেষ'}</span>
                 </button>
               </div>
             </div>

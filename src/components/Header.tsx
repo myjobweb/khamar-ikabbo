@@ -185,20 +185,6 @@ export const Header: React.FC = () => {
               <span>ট্র্যাকিং</span>
             </button>
 
-            {/* Shopping Cart Button */}
-            <button
-              onClick={() => setIsCartOpen(true)}
-              className="flex items-center gap-2 bg-[#F57C00] hover:bg-[#E65100] text-white px-4 py-2 rounded-full text-xs sm:text-sm font-bold shadow-md hover:shadow-lg transition-all active:scale-95 cursor-pointer shrink-0"
-              id="btn-header-cart"
-            >
-              <ShoppingBag className="w-4 h-4" />
-              <span>কার্ট</span>
-              {cartCount > 0 && (
-                <span className="bg-white text-[#F57C00] text-[11px] font-black px-2 py-0.2 rounded-full shadow-2xs">
-                  {toBengaliNumber(cartCount)}
-                </span>
-              )}
-            </button>
 
             {/* Mobile Hamburger Menu Toggle */}
             <button

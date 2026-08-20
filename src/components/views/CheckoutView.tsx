@@ -207,11 +207,11 @@ export const CheckoutView: React.FC = () => {
           </div>
 
           <button
-            onClick={() => setCurrentRoute('cart')}
+            onClick={() => setCurrentRoute('home')}
             className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#1B5E20] hover:text-[#124116] bg-white hover:bg-gray-50 px-4 py-2.5 rounded-xl border border-[#E8E5DF] transition-colors cursor-pointer"
           >
             <ArrowLeft className="w-4 h-4" />
-            <span>কার্টে ফিরে যান</span>
+            <span>পণ্য তালিকায় ফিরে যান</span>
           </button>
         </div>
 

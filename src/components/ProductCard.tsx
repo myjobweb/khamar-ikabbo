@@ -15,7 +15,7 @@ interface ProductCardProps {
 }
 
 export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
-  const { setSelectedProduct, addToCart, buyNow } = useApp();
+  const { setSelectedProduct, buyNow } = useApp();
 
   const isDiscounted = product.regularPrice && product.regularPrice > product.price;
   const discountPercent = isDiscounted
@@ -129,40 +129,23 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             </span>
           </div>
 
-          {/* Action Buttons: "কার্টে যোগ করুন" and "এখনই অর্ডার করুন" */}
-          <div className="grid grid-cols-2 gap-2 pt-1">
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                addToCart(product, 1, false);
-              }}
-              disabled={!product.inStock}
-              className={`flex items-center justify-center gap-1 text-xs font-bold py-2.5 px-2 rounded-xl border transition-all active:scale-95 cursor-pointer ${
-                product.inStock
-                  ? 'bg-[#FDFCF9] hover:bg-[#E8F5E9] text-[#1B5E20] border-[#1B5E20]/30 hover:border-[#1B5E20]'
-                  : 'bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed'
-              }`}
-              id={`btn-add-cart-${product.id}`}
-            >
-              <ShoppingBag className="w-3.5 h-3.5 text-[#1B5E20]" />
-              <span>কার্টে যোগ করুন</span>
-            </button>
-
+          {/* Direct Order Action Button */}
+          <div className="pt-1">
             <button
               onClick={(e) => {
                 e.stopPropagation();
                 buyNow(product, 1);
               }}
               disabled={!product.inStock}
-              className={`flex items-center justify-center gap-1 text-xs font-bold py-2.5 px-2 rounded-xl transition-all active:scale-95 cursor-pointer ${
+              className={`w-full flex items-center justify-center gap-2 text-xs sm:text-sm font-bold py-2.5 px-4 rounded-xl transition-all active:scale-95 cursor-pointer ${
                 product.inStock
-                  ? 'bg-[#F57C00] hover:bg-[#E65100] text-white shadow-xs'
+                  ? 'bg-[#F57C00] hover:bg-[#E65100] text-white shadow-md hover:shadow-lg'
                   : 'bg-gray-200 text-gray-400 cursor-not-allowed'
               }`}
               id={`btn-buy-${product.id}`}
             >
-              <Zap className="w-3.5 h-3.5 text-white" />
-              <span>এখনই অর্ডার করুন</span>
+              <Zap className="w-4 h-4 text-white fill-white" />
+              <span>{product.inStock ? 'অর্ডার করুন' : 'স্টক শেষ'}</span>
             </button>
           </div>
 
