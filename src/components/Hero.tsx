@@ -119,9 +119,9 @@ export const Hero: React.FC = () => {
             {/* Featured Hero Banner Image Card */}
             <div className="relative rounded-3xl overflow-hidden shadow-lg border border-[#E8E5DF] group mt-6">
               <img
-                src="/cow_hero_banner.jpg"
+                src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAP//////////////////////////////////////////////////////////////////////////////////////wgALCAABAAEBAREA/8QAFBABAAAAAAAAAAAAAAAAAAAAAP/aAAgBAQABPxA="
                 alt="খামারি কাব্য খামার ও গরু"
-                className="w-full h-48 sm:h-56 object-cover group-hover:scale-105 transition-transform duration-700"
+                className="w-full h-48 sm:h-56 object-cover group-hover:scale-105 transition-transform duration-700 bg-emerald-800"
                 referrerPolicy="no-referrer"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex flex-col justify-end p-4 sm:p-5 text-white">
