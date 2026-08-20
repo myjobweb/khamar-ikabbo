@@ -18,6 +18,7 @@ import {
   Lock
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
+import { saveAbandonedOrderToStore, markAbandonedOrderConverted } from '../../services/store';
 
 export const CheckoutView: React.FC = () => {
   const {
@@ -71,6 +72,37 @@ export const CheckoutView: React.FC = () => {
     const bdRegex = /^(?:\+?88|88)?(01[3-9]\d{8})$/;
     return bdRegex.test(clean);
   };
+
+  const [abandonedOrderId] = useState(() => `abnd-${Date.now()}-${Math.floor(Math.random()*1000)}`);
+  
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      if ((name || phone || address) && cart.length > 0) {
+        saveAbandonedOrderToStore({
+          id: abandonedOrderId,
+          customerName: name.trim(),
+          phone: phone.trim(),
+          address: address.trim(),
+          items: cart.map(item => ({
+            productId: item.product.id,
+            productName: item.product.nameBn,
+            unit: item.product.unit,
+            price: item.product.price,
+            quantity: item.quantity,
+            image: item.product.image,
+            subtotal: item.product.price * item.quantity
+          })),
+          subtotal: cartTotal,
+          total: grandTotal,
+          status: 'abandoned',
+          createdAt: new Date().toISOString(),
+          updatedAt: new Date().toISOString()
+        });
+      }
+    }, 1500); // 1.5 seconds debounce
+
+    return () => clearTimeout(handler);
+  }, [name, phone, address, cart, cartTotal, grandTotal, abandonedOrderId]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -129,7 +161,7 @@ export const CheckoutView: React.FC = () => {
       }));
 
       // 3. Create Order
-      await placeOrder({
+      const savedOrder = await placeOrder({
         customerName: name.trim(),
         phone: phone.trim(),
         division: 'বাংলাদেশ',
@@ -144,6 +176,9 @@ export const CheckoutView: React.FC = () => {
         total: grandTotal,
         status: 'pending'
       });
+
+      // 4. Mark Abandoned Order as Converted
+      await markAbandonedOrderConverted(abandonedOrderId, savedOrder.id);
 
       try {
         confetti({

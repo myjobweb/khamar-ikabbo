@@ -2,6 +2,7 @@ import {
   Category,
   Product,
   Order,
+  AbandonedOrder,
   SiteSettings,
   GuideArticle,
   OrderStatus,
@@ -79,6 +80,59 @@ export const deleteProductFromStore = async (id: string): Promise<boolean> => {
     await deleteDoc(doc(db, 'products', id));
   } catch(e) {}
   return true;
+};
+
+export const fetchAbandonedOrders = async (): Promise<AbandonedOrder[]> => {
+  try {
+    const snap = await getDocs(collection(db, 'abandoned_orders'));
+    if (!snap.empty) {
+      const orders = snap.docs.map(d => d.data() as AbandonedOrder);
+      orders.sort((a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime());
+      return orders;
+    }
+  } catch (e) {
+    console.warn('Error fetching abandoned orders:', e);
+  }
+  return [];
+};
+
+export const saveAbandonedOrderToStore = async (order: AbandonedOrder): Promise<AbandonedOrder> => {
+  try {
+    await setDoc(doc(db, 'abandoned_orders', order.id), order);
+  } catch (e) {
+    console.warn('Error saving abandoned order:', e);
+  }
+  return order;
+};
+
+export const deleteAbandonedOrderFromStore = async (id: string): Promise<boolean> => {
+  try {
+    await deleteDoc(doc(db, 'abandoned_orders', id));
+    return true;
+  } catch (e) {
+    console.warn(e);
+    return false;
+  }
+};
+
+export const markAbandonedOrderConverted = async (id: string, convertedOrderId: string): Promise<boolean> => {
+  try {
+    const docRef = doc(db, 'abandoned_orders', id);
+    const docSnap = await getDoc(docRef);
+    if (docSnap.exists()) {
+      const data = docSnap.data() as AbandonedOrder;
+      await setDoc(docRef, {
+        ...data,
+        status: 'converted',
+        convertedOrderId,
+        updatedAt: new Date().toISOString()
+      });
+      return true;
+    }
+  } catch (e) {
+    console.warn(e);
+  }
+  return false;
 };
 
 export const fetchOrders = async (): Promise<Order[]> => {

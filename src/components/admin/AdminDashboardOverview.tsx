@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useApp } from '../../context/AppContext';
+import { fetchAbandonedOrders } from '../../services/store';
 import {
   Package,
   FileSpreadsheet,
@@ -18,6 +19,13 @@ import { toBengaliNumber, formatBengaliPrice } from '../../utils/bengali';
 
 export const AdminDashboardOverview: React.FC = () => {
   const { products, orders, setAdminTab, updateOrderStatus } = useApp();
+  const [abandonedOrdersCount, setAbandonedOrdersCount] = useState(0);
+
+  useEffect(() => {
+    fetchAbandonedOrders().then(orders => {
+      setAbandonedOrdersCount(orders.filter(o => o.status !== 'converted').length);
+    });
+  }, []);
 
   // Statistics calculation
   const totalProducts = products.length;
@@ -56,18 +64,32 @@ export const AdminDashboardOverview: React.FC = () => {
         {/* 2. Total Orders */}
         <div className="bg-white p-4.5 rounded-2xl border border-[#E8E5DF] shadow-xs flex items-center justify-between">
           <div>
-            <p className="text-[11px] font-bold text-gray-500 uppercase tracking-wider">মোট অর্ডার</p>
+            <p className="text-[11px] font-bold text-gray-500 uppercase tracking-wider">সম্পূর্ণ অর্ডার</p>
             <h3 className="text-2xl font-black text-[#2E3333] mt-1">
               {toBengaliNumber(totalOrders)} টি
             </h3>
-            <p className="text-[10px] text-gray-400 font-semibold mt-0.5">সর্বমোট নিবন্ধিত</p>
+            <p className="text-[10px] text-gray-400 font-semibold mt-0.5">অর্ডার সম্পন্ন</p>
           </div>
           <div className="w-11 h-11 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center">
             <FileSpreadsheet className="w-6 h-6" />
           </div>
         </div>
 
-        {/* 3. New Orders */}
+        {/* 3. Abandoned Orders */}
+        <div className="bg-white p-4.5 rounded-2xl border border-[#E8E5DF] shadow-xs flex items-center justify-between">
+          <div>
+            <p className="text-[11px] font-bold text-gray-500 uppercase tracking-wider">অসম্পূর্ণ অর্ডার</p>
+            <h3 className="text-2xl font-black text-[#2E3333] mt-1">
+              {toBengaliNumber(abandonedOrdersCount)} টি
+            </h3>
+            <p className="text-[10px] text-gray-400 font-semibold mt-0.5">পরিত্যক্ত / চেকআউট হয়নি</p>
+          </div>
+          <div className="w-11 h-11 bg-amber-50 text-amber-600 rounded-2xl flex items-center justify-center">
+            <FileSpreadsheet className="w-6 h-6 opacity-70" />
+          </div>
+        </div>
+
+        {/* 4. New Orders */}
         <div className="bg-white p-4.5 rounded-2xl border border-[#E8E5DF] shadow-xs flex items-center justify-between">
           <div>
             <p className="text-[11px] font-bold text-amber-700 uppercase tracking-wider">নতুন অর্ডার</p>

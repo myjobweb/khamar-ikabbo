@@ -9,6 +9,7 @@ import { AdminCategoryManagement } from './AdminCategoryManagement';
 import { AdminSubcategoryManagement } from './AdminSubcategoryManagement';
 import { AdminComboManagement } from './AdminComboManagement';
 import { AdminOrdersManagement } from './AdminOrdersManagement';
+import { AdminAbandonedOrders } from './AdminAbandonedOrders';
 import { AdminCustomersManagement } from './AdminCustomersManagement';
 import { AdminInventoryManagement } from './AdminInventoryManagement';
 import { AdminSiteSettings } from './AdminSiteSettings';
@@ -38,6 +39,8 @@ export const AdminLayout: React.FC = () => {
         return <AdminComboManagement />;
       case 'orders':
         return <AdminOrdersManagement />;
+      case 'abandoned-orders':
+        return <AdminAbandonedOrders />;
       case 'customers':
         return <AdminCustomersManagement />;
       case 'inventory':

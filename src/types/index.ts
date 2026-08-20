@@ -29,6 +29,7 @@ export type AdminTabType =
   | 'subcategories'
   | 'combinations'
   | 'orders'
+  | 'abandoned-orders'
   | 'customers'
   | 'inventory'
   | 'guides'
@@ -48,6 +49,22 @@ export type ProductStatus = 'active' | 'inactive' | 'out_of_stock';
 export type StockStatusType = 'in_stock' | 'low_stock' | 'out_of_stock';
 
 export type OrderStatus = 'new' | 'confirmed' | 'processing' | 'shipped' | 'delivered' | 'cancelled' | 'pending';
+export type AbandonedOrderStatus = 'abandoned' | 'converted';
+
+export interface AbandonedOrder {
+  id: string;
+  customerName: string;
+  phone: string;
+  address: string;
+  notes?: string;
+  items: OrderItem[];
+  subtotal: number;
+  total: number;
+  status: AbandonedOrderStatus;
+  createdAt: string;
+  updatedAt: string;
+  convertedOrderId?: string;
+}
 
 // --- Supabase DB Schema Types ---
 

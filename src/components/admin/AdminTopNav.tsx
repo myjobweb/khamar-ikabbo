@@ -22,6 +22,7 @@ const TAB_TITLES: Record<AdminTabType, { title: string; subtitle: string }> = {
   subcategories: { title: 'সাবক্যাটাগরি তালিকা', subtitle: 'ক্যাটাগরির অধীনস্থ উপ-বিভাগসমূহ' },
   combinations: { title: 'কম্বিনেশন প্যাকেজ', subtitle: 'সাশ্রয়ী কম্বো ও বিশেষ অফার প্যাকেজসমূহ' },
   orders: { title: 'অর্ডার তালিকা ও প্রসেসিং', subtitle: 'গ্রাহকের অর্ডার ডেলিভারি ও স্ট্যাটাস আপডেট' },
+  'abandoned-orders': { title: 'অসম্পূর্ণ অর্ডার', subtitle: 'যেসব অর্ডার শুরু হয়েও সম্পন্ন হয়নি' },
   customers: { title: 'খামারি ও গ্রাহক তালিকা', subtitle: 'নিবন্ধিত ও নিয়মিত ক্রেতা প্রোফাইল' },
   inventory: { title: 'ইনভেন্টরি ও স্টক অ্যালার্ট', subtitle: 'মজুত পণ্য ও লো-স্টক নোটিফিকেশন' },
   settings: { title: 'সাইট সেটিংস ও কনফিগারেশন', subtitle: 'ফোন, হোয়াটসঅ্যাপ, ডেলিভারি চার্জ ও ঠিকানা' },

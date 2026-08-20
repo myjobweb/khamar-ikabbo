@@ -206,6 +206,21 @@ export const AdminSidebar: React.FC<AdminSidebarProps> = ({ isOpen, onClose }) =
               )}
             </button>
 
+            {/* Abandoned Orders */}
+            <button
+              onClick={() => handleTabSelect('abandoned-orders')}
+              className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl font-bold transition-all cursor-pointer ${
+                adminTab === 'abandoned-orders'
+                  ? 'bg-[#1B5E20] text-white shadow-xs'
+                  : 'text-[#2E3333] hover:bg-[#E8F5E9] hover:text-[#1B5E20]'
+              }`}
+            >
+              <div className="flex items-center gap-3">
+                <FileSpreadsheet className="w-4 h-4 opacity-70" />
+                <span>📋 অসম্পূর্ণ অর্ডার</span>
+              </div>
+            </button>
+
             {/* Customers */}
             <button
               onClick={() => handleTabSelect('customers')}

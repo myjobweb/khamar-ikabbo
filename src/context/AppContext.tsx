@@ -274,7 +274,7 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
       const sub = target.replace('admin/', '');
       const validTabs: AdminTabType[] = [
         'dashboard', 'products', 'categories', 'subcategories',
-        'combinations', 'orders', 'customers', 'inventory', 'settings', 'profile'
+        'combinations', 'orders', 'abandoned-orders', 'customers', 'inventory', 'settings', 'profile'
       ];
       if (validTabs.includes(sub as AdminTabType)) {
         setAdminTab(sub as AdminTabType);
