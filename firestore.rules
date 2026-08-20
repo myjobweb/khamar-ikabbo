@@ -16,5 +16,8 @@ service cloud.firestore {
     match /guides/{document=**} {
       allow read, write: if true;
     }
+    match /abandoned_orders/{document=**} {
+      allow read, write: if true;
+    }
   }
 }
