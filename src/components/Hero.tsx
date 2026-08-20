@@ -92,7 +92,10 @@ export const Hero: React.FC = () => {
             {/* Action Buttons */}
             <div className="flex flex-wrap items-center gap-4 pt-2">
               <button
-                onClick={() => setCurrentRoute('feed')}
+                onClick={() => {
+                  const el = document.getElementById('featured-products');
+                  if (el) el.scrollIntoView({ behavior: 'smooth' });
+                }}
                 className="px-8 py-4 bg-[#1B5E20] text-white rounded-2xl font-bold shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5 cursor-pointer text-sm sm:text-base"
                 id="btn-hero-view-products"
               >
