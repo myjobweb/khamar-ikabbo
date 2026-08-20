@@ -496,7 +496,15 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
     const minOrderQty = product.minimumOrderQuantity || 1;
     const finalQty = Math.max(quantity, minOrderQty);
 
-    addToCart(product, finalQty, false);
+    if (finalQty > product.stockCount) {
+      showToast(
+        `দুঃখিত, এই পণ্যের সর্বোচ্চ ${toBengaliNumber(product.stockCount)} টি স্টকে রয়েছে।`,
+        'warning'
+      );
+      return;
+    }
+
+    setCart([{ product, quantity: finalQty }]);
     setIsCartOpen(false);
     setSelectedProduct(null);
     setCurrentRoute('checkout');

@@ -46,7 +46,13 @@ export const CheckoutModal: React.FC = () => {
     return bdRegex.test(clean);
   };
 
-  const [abandonedOrderId] = useState(() => `abnd-${Date.now()}-${Math.floor(Math.random()*1000)}`);
+  const [abandonedOrderId, setAbandonedOrderId] = useState(() => `abnd-${Date.now()}-${Math.floor(Math.random()*1000)}`);
+  
+  useEffect(() => {
+    if (isCheckoutOpen) {
+      setAbandonedOrderId(`abnd-${Date.now()}-${Math.floor(Math.random()*1000)}`);
+    }
+  }, [isCheckoutOpen]);
   
   useEffect(() => {
     if (!isCheckoutOpen) return;
