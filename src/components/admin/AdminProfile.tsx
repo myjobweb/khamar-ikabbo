@@ -165,7 +165,7 @@ export const AdminProfile: React.FC = () => {
                   type={showNewPass ? 'text' : 'password'}
                   value={newPassword}
                   onChange={(e) => setNewPassword(e.target.value)}
-                  placeholder="যেমন: 597752Sakib"
+                  placeholder="নতুন পাসওয়ার্ড লিখুন"
                   className="w-full px-3.5 pr-10 py-2.5 bg-white border border-[#E8E5DF] rounded-xl focus:border-[#1B5E20] outline-none"
                 />
                 <button

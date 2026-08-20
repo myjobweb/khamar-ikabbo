@@ -1,21 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useApp } from '../../context/AppContext';
-import { Wheat, Lock, Mail, AlertCircle, ArrowLeft, Loader2, ShieldCheck, Eye, EyeOff, KeyRound } from 'lucide-react';
-import { getSavedAdminCredentials } from '../../services/adminAuth';
+import { Wheat, Lock, Mail, AlertCircle, ArrowLeft, Loader2, ShieldCheck, Eye, EyeOff } from 'lucide-react';
 
 export const AdminLogin: React.FC = () => {
   const { loginAdmin, setCurrentRoute } = useApp();
-  const [email, setEmail] = useState('admin@khamarikabbo.com');
-  const [password, setPassword] = useState('597752Sakib');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
-
-  useEffect(() => {
-    const creds = getSavedAdminCredentials();
-    setEmail(creds.email);
-    setPassword(creds.password);
-  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -32,13 +25,6 @@ export const AdminLogin: React.FC = () => {
     } finally {
       setIsSubmitting(false);
     }
-  };
-
-  const handleQuickFill = () => {
-    const creds = getSavedAdminCredentials();
-    setEmail(creds.email);
-    setPassword(creds.password);
-    setErrorMsg(null);
   };
 
   return (
@@ -145,33 +131,6 @@ export const AdminLogin: React.FC = () => {
             )}
           </button>
         </form>
-
-        {/* Credentials Info Box */}
-        <div className="p-3.5 bg-emerald-50/70 border border-emerald-100 rounded-2xl text-[11px] text-[#1B5E20] space-y-2">
-          <div className="flex items-center justify-between">
-            <span className="font-bold flex items-center gap-1.5">
-              <KeyRound className="w-3.5 h-3.5" />
-              <span>নির্ধারিত অ্যাডমিন ক্রেডেনশিয়াল:</span>
-            </span>
-            <button
-              type="button"
-              onClick={handleQuickFill}
-              className="text-[10px] underline font-black hover:text-emerald-900 cursor-pointer"
-            >
-              স্বয়ংক্রিয় পূরণ
-            </button>
-          </div>
-          <div className="space-y-1 font-mono text-[11px] text-gray-800 bg-white/80 p-2.5 rounded-xl border border-emerald-100/60">
-            <div className="flex justify-between">
-              <span className="text-gray-500">ইমেইল:</span>
-              <span className="font-bold text-[#1B5E20]">admin@khamarikabbo.com</span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-gray-500">পাসওয়ার্ড:</span>
-              <span className="font-bold text-[#1B5E20]">597752Sakib</span>
-            </div>
-          </div>
-        </div>
 
       </div>
 

@@ -96,7 +96,7 @@ export const loginAdminUser = async (
 
   return {
     user: null,
-    error: 'ভুল ইমেইল বা পাসওয়ার্ড। সঠিক পাসওয়ার্ড: 597752Sakib'
+    error: 'ভুল ইমেইল বা পাসওয়ার্ড প্রদান করা হয়েছে।'
   };
 };
 
