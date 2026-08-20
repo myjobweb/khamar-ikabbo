@@ -116,26 +116,7 @@ export const Hero: React.FC = () => {
               </button>
             </div>
 
-            {/* Featured Hero Banner Image Card */}
-            <div className="relative rounded-3xl overflow-hidden shadow-lg border border-[#E8E5DF] group mt-6">
-              <img
-                src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAP//////////////////////////////////////////////////////////////////////////////////////wgALCAABAAEBAREA/8QAFBABAAAAAAAAAAAAAAAAAAAAAP/aAAgBAQABPxA="
-                alt="খামারি কাব্য খামার ও গরু"
-                className="w-full h-48 sm:h-56 object-cover group-hover:scale-105 transition-transform duration-700 bg-emerald-800"
-                referrerPolicy="no-referrer"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex flex-col justify-end p-4 sm:p-5 text-white">
-                <span className="inline-block px-3 py-1 bg-[#1B5E20] text-white text-[10px] font-bold rounded-full w-max mb-2 uppercase tracking-wider">
-                  খামারি কাব্য লাইভ খামার
-                </span>
-                <h3 className="text-lg sm:text-xl font-extrabold text-white mb-1">
-                  সুস্থ সবল গবাদিপশু ও সমৃদ্ধ খামার
-                </h3>
-                <p className="text-xs text-gray-200 line-clamp-2">
-                  সেরা মানের ফিড ও সুষম পুষ্টি নিশ্চিত করুন খামারের সর্বোচ্চ উৎপাদনে।
-                </p>
-              </div>
-            </div>
+
 
             {/* Micro Trust Strip */}
             <div className="pt-6 border-t border-[#E8E5DF] flex flex-wrap items-center gap-6 text-xs text-gray-600 font-medium">

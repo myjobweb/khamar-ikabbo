@@ -126,6 +126,54 @@ export const AdminSiteSettings: React.FC = () => {
           </div>
         </div>
 
+        {/* Hero Section Banner Content Settings */}
+        <div className="bg-white rounded-3xl border border-[#E8E5DF] p-6 shadow-xs space-y-4">
+          <h3 className="text-sm font-black text-[#2E3333] border-b border-gray-100 pb-2.5 flex items-center gap-2">
+            <Settings className="w-4 h-4 text-[#1B5E20]" />
+            <span>হিরো সেকশন টেক্সট (মূল শিরোনাম ও বর্ণনা)</span>
+          </h3>
+
+          <div className="space-y-4 text-xs">
+            <div>
+              <label className="block font-bold text-[#2E3333] mb-1">
+                হিরো মেইন হেডলাইন (যেমন: আপনার খামারের প্রয়োজনীয় সবকিছু, এক জায়গায়)
+              </label>
+              <input
+                type="text"
+                value={formData.heroHeading || 'আপনার খামারের প্রয়োজনীয় সবকিছু, এক জায়গায়'}
+                onChange={(e) => handleChange('heroHeading', e.target.value)}
+                placeholder="আপনার খামারের প্রয়োজনীয় সবকিছু, এক জায়গায়"
+                className="w-full px-3.5 py-2.5 bg-[#FDFCF9] border border-[#E8E5DF] focus:border-[#1B5E20] rounded-xl outline-none font-bold"
+              />
+            </div>
+
+            <div>
+              <label className="block font-bold text-[#2E3333] mb-1">
+                হিরো সাবটাইটেল / বিবরণ (Description)
+              </label>
+              <textarea
+                rows={2}
+                value={formData.heroDescription || 'গরুর খাদ্য, ফিড কাঁচামাল, সাপ্লিমেন্ট, ঔষধ ও প্রয়োজনীয় কম্বিনেশন—সহজে অর্ডার করুন।'}
+                onChange={(e) => handleChange('heroDescription', e.target.value)}
+                className="w-full px-3.5 py-2.5 bg-[#FDFCF9] border border-[#E8E5DF] focus:border-[#1B5E20] rounded-xl outline-none leading-relaxed"
+              />
+            </div>
+
+            <div>
+              <label className="block font-bold text-[#2E3333] mb-1">
+                প্রধান বাটন টেক্সট (Button Text)
+              </label>
+              <input
+                type="text"
+                value={formData.heroButtonText || 'পণ্য দেখুন'}
+                onChange={(e) => handleChange('heroButtonText', e.target.value)}
+                placeholder="পণ্য দেখুন"
+                className="w-full px-3.5 py-2.5 bg-[#FDFCF9] border border-[#E8E5DF] focus:border-[#1B5E20] rounded-xl outline-none"
+              />
+            </div>
+          </div>
+        </div>
+
         {/* Contact Numbers & Channels */}
         <div className="bg-white rounded-3xl border border-[#E8E5DF] p-6 shadow-xs space-y-4">
           <h3 className="text-sm font-black text-[#2E3333] border-b border-gray-100 pb-2.5 flex items-center gap-2">
