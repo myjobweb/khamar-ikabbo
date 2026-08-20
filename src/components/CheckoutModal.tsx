@@ -35,8 +35,6 @@ export const CheckoutModal: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
 
-  if (!isCheckoutOpen) return null;
-
   // Calculate delivery charge
   const isFreeDelivery = cartTotal >= siteSettings.freeDeliveryThreshold;
   const deliveryCharge = isFreeDelivery ? 0 : siteSettings.deliveryChargeDhaka;
@@ -84,6 +82,8 @@ export const CheckoutModal: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrorMsg('');
+
+    if (!isCheckoutOpen) return;
 
     if (cart.length === 0) {
       setErrorMsg('আপনার কার্ট খালি, কোনো পণ্য নির্বাচন করা হয়নি।');
@@ -171,6 +171,8 @@ export const CheckoutModal: React.FC = () => {
       setIsSubmitting(false);
     }
   };
+
+  if (!isCheckoutOpen) return null;
 
   return (
     <div
