@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /checkout
+Disallow: /cart
+Disallow: /order-success
+Disallow: /track-order
+Disallow: /search
+
+Sitemap: https://ais-dev-a5txmicbskhyupdmbtbaud-268090858084.asia-southeast1.run.app/sitemap.xml

@@ -1,0 +1,8 @@
+{
+  "name": "Khamari Kabbo — খামারি কাব্য",
+  "description": "খামারের যত্নে, খামারির পাশে — প্রফেশনাল গবাদিপশুর খাদ্য, ফিড কাঁচামাল, সাপ্লিমেন্ট ও চিকিৎসা সামগ্রীর ই-কমার্স প্ল্যাটফর্ম।",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

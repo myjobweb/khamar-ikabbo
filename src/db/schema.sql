@@ -1,0 +1,2 @@
+-- Khamari Kabbo PostgreSQL / Supabase Migration Schema
+-- See /supabase/schema.sql for the complete SQL schema and seeds.
