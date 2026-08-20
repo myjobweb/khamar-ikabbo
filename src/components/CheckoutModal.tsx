@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useApp } from '../context/AppContext';
 import { BANGLADESH_DISTRICTS } from '../data/seedData';
 import { formatTaka, toBengaliNumber } from '../utils/bengali';
@@ -15,6 +15,7 @@ import {
   AlertCircle
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
+import { saveAbandonedOrderToStore, markAbandonedOrderConverted } from '../services/store';
 
 export const CheckoutModal: React.FC = () => {
   const {
@@ -46,6 +47,39 @@ export const CheckoutModal: React.FC = () => {
     const bdRegex = /^(?:\+?88|88)?(01[3-9]\d{8})$/;
     return bdRegex.test(clean);
   };
+
+  const [abandonedOrderId] = useState(() => `abnd-${Date.now()}-${Math.floor(Math.random()*1000)}`);
+  
+  useEffect(() => {
+    if (!isCheckoutOpen) return;
+    
+    const handler = setTimeout(() => {
+      if ((name || phone || address) && cart.length > 0) {
+        saveAbandonedOrderToStore({
+          id: abandonedOrderId,
+          customerName: name.trim(),
+          phone: phone.trim(),
+          address: address.trim(),
+          items: cart.map(item => ({
+            productId: item.product.id,
+            productName: item.product.nameBn,
+            unit: item.product.unit,
+            price: item.product.price,
+            quantity: item.quantity,
+            image: item.product.image,
+            subtotal: item.product.price * item.quantity
+          })),
+          subtotal: cartTotal,
+          total: grandTotal,
+          status: 'abandoned',
+          createdAt: new Date().toISOString(),
+          updatedAt: new Date().toISOString()
+        });
+      }
+    }, 1500); // 1.5 seconds debounce
+
+    return () => clearTimeout(handler);
+  }, [name, phone, address, cart, cartTotal, grandTotal, abandonedOrderId, isCheckoutOpen]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -102,7 +136,7 @@ export const CheckoutModal: React.FC = () => {
         subtotal: item.product.price * item.quantity
       }));
 
-      await placeOrder({
+      const savedOrder = await placeOrder({
         customerName: name.trim(),
         phone: phone.trim(),
         division: 'বাংলাদেশ',
@@ -117,6 +151,9 @@ export const CheckoutModal: React.FC = () => {
         total: grandTotal,
         status: 'pending'
       });
+
+      // Mark Abandoned Order as Converted
+      await markAbandonedOrderConverted(abandonedOrderId, savedOrder.id);
 
       try {
         confetti({
