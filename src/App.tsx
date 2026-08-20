@@ -105,8 +105,8 @@ export function App() {
         return (
           <>
             <Hero />
-            <CategorySection />
             <FeaturedProductsSection />
+            <CategorySection />
             <WhyKhamariKabbo />
             <CombinationSection />
             <FarmerGuideSection />

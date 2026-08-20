@@ -63,39 +63,6 @@ export const Header: React.FC = () => {
 
   return (
     <header className="sticky top-0 z-40 bg-white border-b border-[#E8E5DF] shadow-xs" id="main-header">
-      {/* Top Banner Ribbon */}
-      <div className="bg-[#1B5E20] text-white text-xs py-1.5 px-4">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <span className="bg-[#F57C00] text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">
-              খামারি অফার
-            </span>
-            <span className="hidden sm:inline font-medium text-[#E8F5E9]">
-              {toBengaliNumber(siteSettings.freeDeliveryThreshold)} টাকার অর্ডারে সারাদেশে ফ্রি ডেলিভারি!
-            </span>
-            <span className="sm:hidden font-medium">ফ্রি ডেলিভারি অফার চলছে</span>
-          </div>
-
-          <div className="flex items-center gap-4 text-xs font-semibold">
-            <button
-              onClick={() => setIsCalculatorOpen(true)}
-              className="flex items-center gap-1 hover:text-[#FFF3E0] transition-colors cursor-pointer"
-            >
-              <Calculator className="w-3.5 h-3.5 text-[#F57C00]" />
-              <span className="hidden md:inline">খাদ্য ক্যালকুলেটর</span>
-            </button>
-
-            <a
-              href={`tel:${siteSettings.hotlinePhone}`}
-              className="flex items-center gap-1 hover:text-[#FFF3E0] transition-colors"
-            >
-              <PhoneCall className="w-3 h-3 text-[#F57C00]" />
-              <span>+৮৮০ {toBengaliNumber(siteSettings.hotlinePhone)}</span>
-            </a>
-          </div>
-        </div>
-      </div>
-
       {/* Main Navigation Bar */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5">
         <div className="flex items-center justify-between gap-4">
