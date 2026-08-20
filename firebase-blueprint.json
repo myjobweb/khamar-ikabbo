@@ -1,0 +1,139 @@
+{
+  "collections": [
+    {
+      "name": "products",
+      "description": "Store products for the shop",
+      "fields": [
+        {
+          "name": "id",
+          "type": "string",
+          "description": "Unique product ID"
+        },
+        {
+          "name": "nameBn",
+          "type": "string",
+          "description": "Product name in Bengali"
+        },
+        {
+          "name": "slug",
+          "type": "string",
+          "description": "URL slug"
+        },
+        {
+          "name": "price",
+          "type": "number",
+          "description": "Price"
+        },
+        {
+          "name": "stockCount",
+          "type": "number",
+          "description": "Available stock count"
+        },
+        {
+          "name": "image",
+          "type": "string",
+          "description": "Product image URL"
+        }
+      ],
+      "rules": {
+        "read": "true",
+        "write": "true"
+      }
+    },
+    {
+      "name": "categories",
+      "description": "Product categories",
+      "fields": [
+        {
+          "name": "id",
+          "type": "string",
+          "description": "Category ID"
+        },
+        {
+          "name": "nameBn",
+          "type": "string",
+          "description": "Category name in Bengali"
+        },
+        {
+          "name": "slug",
+          "type": "string",
+          "description": "Category slug"
+        }
+      ],
+      "rules": {
+        "read": "true",
+        "write": "true"
+      }
+    },
+    {
+      "name": "orders",
+      "description": "Customer orders",
+      "fields": [
+        {
+          "name": "id",
+          "type": "string",
+          "description": "Order ID"
+        },
+        {
+          "name": "customerName",
+          "type": "string",
+          "description": "Customer Name"
+        },
+        {
+          "name": "total",
+          "type": "number",
+          "description": "Order Total"
+        },
+        {
+          "name": "status",
+          "type": "string",
+          "description": "Order Status"
+        }
+      ],
+      "rules": {
+        "read": "true",
+        "write": "true"
+      }
+    },
+    {
+      "name": "site_settings",
+      "description": "Site global settings",
+      "fields": [
+        {
+          "name": "id",
+          "type": "string",
+          "description": "Settings document ID"
+        },
+        {
+          "name": "tagline",
+          "type": "string",
+          "description": "Site tagline"
+        }
+      ],
+      "rules": {
+        "read": "true",
+        "write": "true"
+      }
+    },
+    {
+      "name": "guides",
+      "description": "Farming guides",
+      "fields": [
+        {
+          "name": "id",
+          "type": "string",
+          "description": "Guide ID"
+        },
+        {
+          "name": "titleBn",
+          "type": "string",
+          "description": "Guide title in Bengali"
+        }
+      ],
+      "rules": {
+        "read": "true",
+        "write": "true"
+      }
+    }
+  ]
+}
